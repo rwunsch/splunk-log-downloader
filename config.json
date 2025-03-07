@@ -1,0 +1,13 @@
+{
+  "splunk_url": "https://splunk-api.or1.adobe.net",
+  "username": "<username>",
+  "password": "<password>",
+  "search_query": "search index=dx_aem_engineering aem_service=\"*cm-p127007-e1238893*\" sourcetype=* aem_tier=publish msg=\"*com.adidasedamprogram.core.service.impl.LoggingServiceImpl Download Access - userID*\" | rex field=msg \"userID > (?<userID>[^,]+)\" | rex field=msg \"AssetPath > (?<AssetPaths>[^,]+)\" | rex field=msg \"FileName > (?<FileNames>[^,>]+)\" | rex field=msg \"Action > (?<Actions>[^,]+)\" | table userID AssetPaths FileNames Actions orig_time",
+  "output_mode": "log",
+  "page_size": 10000,
+  "earliest": "2025-03-01T00:00:00",
+  "latest": "2025-03-01T23:59:59",
+  "output_file": "output.log",
+  "job_app": "TA-aem_skyline",
+  "debug": true
+}
